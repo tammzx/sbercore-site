@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СберОдин — Презентация</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; color: #000; }
+    .slide { page-break-after: always; width: 210mm; height: 297mm; }
+    .slide:last-child { page-break-after: auto; }
+    .no-print { display: none !important; }
+  }
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #0a0a0b;
+    color: #f0f0f0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+  .slide {
+    width: 210mm;
+    height: 297mm;
+    background: #0a0a0b;
+    color: #f0f0f0;
+    padding: 24mm 20mm;
+    position: relative;
+    box-sizing: border-box;
+    page-break-after: always;
+  }
+  .slide:last-child { page-break-after: auto; }
+  .slide:nth-child(even) { background: #141416; }
+  .slide-number {
+    position: absolute;
+    bottom: 16mm;
+    right: 20mm;
+    font-size: 10mm;
+    color: #4a4a4e;
+    font-weight: 600;
+  }
+  .slide-title {
+    font-size: 11mm;
+    font-weight: 800;
+    color: #f0f0f0;
+    margin-bottom: 8mm;
+    letter-spacing: -0.02em;
+    border-bottom: 2px solid #FF5C00;
+    display: inline-block;
+    padding-bottom: 2mm;
+  }
+  .slide-sub {
+    font-size: 5.5mm;
+    color: #8a8a90;
+    margin-bottom: 10mm;
+    max-width: 140mm;
+  }
+  .orange { color: #FF5C00; }
+  .white { color: #f0f0f0; }
+
+  /* Layout helpers */
+  .two-col { display: flex; gap: 12mm; }
+  .col { flex: 1; }
+  .three-col { display: flex; gap: 8mm; }
+  .card {
+    background: #141416;
+    border: 1px solid #2a2a2e;
+    border-radius: 4mm;
+    padding: 6mm;
+    height: 42mm;
+    overflow: hidden;
+  }
+  .card h4 { font-size: 4.5mm; margin-bottom: 2mm; color: #f0f0f0; }
+  .card p { font-size: 3.5mm; color: #8a8a90; line-height: 1.5; }
+  .stat-card {
+    background: #141416;
+    border: 1px solid #2a2a2e;
+    border-radius: 4mm;
+    padding: 8mm 6mm;
+    text-align: center;
+  }
+  .stat-card .big { font-size: 13mm; font-weight: 800; color: #FF5C00; }
+  .stat-card .lbl { font-size: 4mm; color: #8a8a90; margin-top: 2mm; }
+  .scen { font-size: 2.8mm; color: #6a6a70; font-style: italic; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 4mm;
+  }
+  th { text-align: left; color: #8a8a90; padding: 2mm; border-bottom: 1px solid #2a2a2e; }
+  td { padding: 2mm; border-bottom: 1px solid #222226; color: #f0f0f0; }
+
+  ul { list-style: none; margin-left: 2mm; }
+  li { margin-bottom: 3mm; font-size: 4.5mm; line-height: 1.5; color: #f0f0f0; }
+  li::before { content: '▪'; color: #FF5C00; display: inline-block; width: 4mm; margin-left: -4mm; }
+
+  .no-print { position: absolute; top: 4mm; left: 20mm; font-size: 3.5mm; color: #6a6a70; }
+</style>
+</head>
+<body>
+
+<!-- 1. Титул -->
+<section class="slide">
+  <div style="height: 40mm;"></div>
+  <div class="slide-title">СберОдин</div>
+  <div style="font-size: 8mm; font-weight: 400; color: #8a8a90; margin-bottom: 12mm;">
+    Универсальный AI-помощник Сбера — один агент для трёх ролей
+  </div>
+  <div style="font-size: 5mm; color: #6a6a70;">
+    AI for Business Cup '26 · кейс-партнёр Сбер · направление AI-трансформация<br>
+    Диагностика · Единый профиль человека · Общее ядро помощника · Безопасность · Эффекты 2027–2029
+  </div>
+  <div class="slide-number">1 / 15</div>
+</section>
+
+<!-- 2. Проблема -->
+<section class="slide">
+  <div class="slide-title">Проблема: три роли, три помощника, разрыв контекста</div>
+  <div class="two-col">
+    <div class="col">
+      <ul>
+        <li>Клиент-физлицо — СберБанк Онлайн + GigaChat</li>
+        <li>Предприниматель — СберБизнес + Giga-ассистент</li>
+        <li>Сотрудник — «Пульс» + внутренние системы</li>
+      </ul>
+      <p style="margin-top: 8mm;">История диалога не переносится при переключении роли. Согласия разрознены. Банковская тайна и ТК РФ требуют строгой изоляции.</p>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h4>Сценарий «разрыв»</h4>
+        <p>Клиент спрашивает о вкладе в рознице, переходит в бизнес — ассистент не знает предыдущий вопрос. Клиент повторяет всё заново.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-number">2 / 15</div>
+</section>
+
+<!-- 3. Решение -->
+<section class="slide">
+  <div class="slide-title">Решение: СберОдин</div>
+  <p class="slide-sub">Один агент-оператор, три вариации, общий обещленный контекст и ролевые анклавы.</p>
+  <div class="three-col">
+    <div class="card">
+      <h4>GROWTH</h4>
+      <p>Воронка клиент → самозанятый → ИП. Переход только по согласию.</p>
+    </div>
+    <div class="card">
+      <h4>EXPERIENCE</h4>
+      <p>Ролевые промпты, память, RAG, guardrails, обратная связь.</p>
+    </div>
+    <div class="card">
+      <h4>EFFICIENCY</h4>
+      <p>Маршрутизатор моделей, кэш, учёт токенов и стоимости.</p>
+    </div>
+  </div>
+  <div class="slide-number">3 / 15</div>
+</section>
+
+<!-- 4. Growth -->
+<section class="slide">
+  <div class="slide-title">Сценарий Growth: клиент → самозанятый → ИП</div>
+  <p class="slide-sub">Помощник не навязывает ИП. Он помогает выбрать статус и выполняет только подтверждённые действия.</p>
+  <div style="display: flex; gap: 6mm; align-items: center; font-size: 5mm;">
+    <div style="background:#FF5C00;color:#000;width:10mm;height:10mm;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-weight:800;">1</div>
+    <div style="flex:1;border-bottom:1px solid #2a2a2e;"></div>
+    <div style="color:#FF5C00;">→</div>
+    <div style="flex:1;border-bottom:1px solid #2a2a2e;"></div>
+    <div style="color:#FF5C00;">→</div>
+    <div style="flex:1;border-bottom:1px solid #2a2a2e;"></div>
+    <div style="color:#FF5C00;">→</div>
+    <div style="background:#FF5C00;color:#000;width:10mm;height:10mm;border-radius:2mm;display:flex;align-items:center;justify-content:center;font-weight:800;">4</div>
+  </div>
+  <div style="margin-top: 8mm; display: flex; gap: 4mm;">
+    <div style="flex:1;">
+      <h4 style="color:#FF5C00;">Клиент</h4>
+      <p style="font-size:4mm;">Розница, СБОЛ, вклады, карты.</p>
+    </div>
+    <div style="flex:1;">
+      <h4 style="color:#FF5C00;">Самозанятый</h4>
+      <p style="font-size:4mm;">НПД, отчёты, триггеры по данным.</p>
+    </div>
+    <div style="flex:1;">
+      <h4 style="color:#FF5C00;">ИП</h4>
+      <p style="font-size:4mm;">Расчётный счёт, СберБизнес.</p>
+    </div>
+    <div style="flex:1;">
+      <h4 style="color:#FF5C00;">Бизнес</h4>
+      <p style="font-size:4mm;">Активный клиент, полный спектр.</p>
+    </div>
+  </div>
+  <p style="margin-top: 8mm; font-size: 4mm; color: #8a8a90;">Handoff retail → biz только через ConsentService со scope CROSS_RETRIEVAL_RETAIL. Без согласия — отказ.</p>
+  <div class="slide-number">4 / 15</div>
+</section>
+
+<!-- 5. Experience -->
+<section class="slide">
+  <div class="slide-title">Сценарий Experience: помощник, которому доверяют</div>
+  <p class="slide-sub">Ролевые промпты, контекстная память, RAG-поиск внутри роли, защита от галлюцинаций.</p>
+  <div class="three-col">
+    <div class="card">
+      <h4>Ролевые промпты</h4>
+      <p>Отдельная инструкция для физлица, предпринимателя, сотрудника.</p>
+    </div>
+    <div class="card">
+      <h4>Память + TTL</h4>
+      <p>История диалога с источником и временем жизни сессии.</p>
+    </div>
+    <div class="card">
+      <h4>Изоляция RAG</h4>
+      <p>Поиск только внутри namespace текущей роли.</p>
+    </div>
+  </div>
+  <div style="margin-top: 8mm;">
+    <h4 style="color:#FF5C00;">Guardrails</h4>
+    <ul>
+      <li>Отказ при недостатке данных</li>
+      <li>Отказ при неоднозначности</li>
+      <li>Отказ при высоком риске</li>
+      <li>Обратная связь: helpful / not_helpful / причина</li>
+    </ul>
+  </div>
+  <div class="slide-number">5 / 15</div>
+</section>
+
+<!-- 6. Efficiency -->
+<section class="slide">
+  <div class="slide-title">Сценарий Efficiency: маршрутизация, кэш, стоимость</div>
+  <p class="slide-sub">Единое ядро вместо трёх помощников. Распределение по сложности и кэширование снижают OPEX.</p>
+  <div class="three-col">
+    <div class="stat-card">
+      <div class="big">Lite</div>
+      <div class="lbl">Простые вопросы<br><span class="scen">сценарий</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="big">Pro</div>
+      <div class="lbl">Средняя сложность<br><span class="scen">сценарий</span></div>
+    </div>
+    <div class="stat-card">
+      <div class="big">Reasoning</div>
+      <div class="lbl">Сложные расчёты, налоги, стратегия<br><span class="scen">сценарий</span></div>
+    </div>
+  </div>
+  <div style="margin-top: 8mm;">
+    <table>
+      <tr><th>Параметр</th><th>Эффект</th></tr>
+      <tr><td>Маршрутизация по сложности</td><td>Дорогая модель только там, где нужна</td></tr>
+      <tr><td>Кэш ответов (изоляция по namespace+role)</td><td>Повторные запросы бесплатно</td></tr>
+      <tr><td>Учёт токенов и стоимости</td><td>Прозрачный отчёт /cost/report</td></tr>
+    </table>
+  </div>
+  <div class="slide-number">6 / 15</div>
+</section>
+
+<!-- 7. Архитектура C4 -->
+<section class="slide">
+  <div class="slide-title">Архитектура C4 — контейнерный уровень</div>
+  <p class="slide-sub">Границы доверия, изоляция на уровне данных, ТОЛЬКО РФ-хостинг.</p>
+  <div style="font-size: 3.5mm; color: #8a8a90; line-height: 1.8;">
+    <div style="margin-bottom: 3mm;"><b>Клиентские приложения</b> → Web / Mobile / Telegram → API Gateway (FastAPI)</div>
+    <div style="margin-bottom: 3mm;"><b>Operator Agent</b> — один агент, три вариации, RBAC инструментов СберAPI</div>
+    <div style="margin-bottom: 3mm;"><b>Consent Service</b> — PostgreSQL + Redis, гранулярные согласия, отзыв ≤ 24 ч</div>
+    <div style="margin-bottom: 3mm;"><b>Context Store</b> — Redis (TTL 15 мин) + PostgreSQL + pgvector (namespace = {user_ref}:{role})</div>
+    <div style="margin-bottom: 3mm;"><b>AI Core</b> — GigaChat API (Только РФ, НУЦ Минцифры), эмбеддинги, Decimal-код-гейт</div>
+    <div style="margin-bottom: 3mm;"><b>Audit Service</b> — append-only, хеш-цепочка, хранение 5 лет</div>
+    <div style="margin-bottom: 3mm;"><b>Внешние:</b> SberID OIDC, СберБанк Онлайн, SberBusiness, HR-портал, GigaChat API</div>
+  </div>
+  <div class="slide-number">7 / 15</div>
+</section>
+
+<!-- 8. Потоки данных -->
+<section class="slide">
+  <div class="slide-title">Потоки данных и согласия</div>
+  <p class="slide-sub">Каждое обращение к ПДн предваряется проверкой согласия. Кэш Redis 60 с, источник истины — PostgreSQL.</p>
+  <div style="font-size: 4mm; color: #8a8a90; line-height: 1.8;">
+    <div style="margin-bottom: 3mm;"><b>1.</b> SberID OIDC → JWT-сессия → псевдоним user_ref = HMAC-SHA256 (скрытой идентификации нет)</div>
+    <div style="margin-bottom: 3mm;"><b>2.</b> Диалог в роли → проверка pdn_dialogue:{role} → ответ только в namespace роли</div>
+    <div style="margin-bottom: 3mm;"><b>3.</b> Переход клиента → бизнес → согласия CROSS_RETRIEVAL_RETAIL → handoff без утечки данных</div>
+    <div style="margin-bottom: 3mm;"><b>4.</b> Вывод анклава в общий слой → CONTEXT_TRANSFER:{role}->shared → только обещлённое содержимое</div>
+    <div style="margin-bottom: 3mm;"><b>5.</b> Сотрудник → ТК РФ ст. 86 → согласие не требуется, контур изолирован</div>
+  </div>
+  <div class="slide-number">8 / 15</div>
+</section>
+
+<!-- 9. Безопасность -->
+<section class="slide">
+  <div class="slide-title">Безопасность: 152-ФЗ, банковская тайна, ТК РФ</div>
+  <p class="slide-sub">Все требования отражены в матрице соответствия с компонентами кода.</p>
+  <div class="three-col">
+    <div class="card">
+      <h4>152-ФЗ</h4>
+      <p>Локализация в РФ (ст. 18), согласие (ст. 9), минимизация (ст. 5), аудит 5 лет (ст. 21).</p>
+    </div>
+    <div class="card">
+      <h4>Банковская тайна</h4>
+      <p>395-1 ст. 26: ролевые анклавы, шифрование, аудит доступа, запрет доступа сотрудника к клиентским данным.</p>
+    </div>
+    <div class="card">
+      <h4>ТК РФ</h4>
+      <p>ст. 86–88: сотрудник — трудовой договор, изоляция, запрет передачи ПДн коллег третьим лицам.</p>
+    </div>
+  </div>
+  <div class="slide-number">9 / 15</div>
+</section>
+
+<!-- 10. Эффекты 2027–2029 -->
+<section class="slide">
+  <div class="slide-title">Эффекты 2027–2029</div>
+  <p class="slide-sub">Все цифры — сценарная модель, точные затраты не раскрываются.</p>
+  <table>
+    <tr><th>Направление</th><th>Эффект</th><th>Основание</td>
+    <tr>
+      <td>Снижение стоимости задачи</td><td>3–5×</td><td>Маршрутизация моделей + кэш</td>
+    </tr>
+    <tr>
+      <td>Доля кэшированных запросов</td><td>60–80%</td><td>Изоляция кэша по роли и namespace</td>
+    </tr>
+    <tr>
+      <td>Разгрузка контакт-центра</td><td>до 30%</td><td>Рутинные вопросы без оператора</td>
+    </tr>
+    <tr>
+      <td>Скорость перехода клиент→ИП</td><td>автоматически</td><td>Воронка Growth с треггерами по данным</td>
+    </tr>
+  </table>
+  <div class="slide-number">10 / 15</div>
+</section>
+
+<!-- 11. Стоимость и допущения -->
+<section class="slide">
+  <div class="slide-title">Стоимость и допущения</div>
+  <p class="slide-sub">Ориентировочная модель, не является коммерческим предложением.</p>
+  <table>
+    <tr><th>Статья</th><th>Допущение</th></tr>
+    <tr><td>Гибкая маршрутация моделей</td><td>Lite / Pro / Reasoning по сложности запроса</td></tr>
+    <tr><td>Кэш ответов в Redis</td><td>Ключ: namespace + role + normalized_query + model_version</td></tr>
+    <tr><td>Учёт токенов</td><td>prompt + completion + total + retries + cache_hit</td></tr>
+    <tr><td>Отчёт стоимости</td><td>/cost/report: по ролям, моделям, сценариям, кэш-хитам</td></tr>
+  </table>
+  <p style="margin-top: 8mm; font-size: 4mm; color: #8a8a90;">Все цифры — сценарная модель 2027–2029.</p>
+  <div class="slide-number">11 / 15</div>
+</section>
+
+<!-- 12. Дорожная карта -->
+<section class="slide">
+  <div class="slide-title">Дорожная карта</div>
+  <p class="slide-sub">От прототипа к промышленному внедрению.</p>
+  <div style="position: relative; padding-left: 10mm;">
+    <div style="position:absolute;left:4.5mm;top:0;bottom:0;width:2px;background:#FF5C00;"></div>
+    <div style="margin-bottom: 8mm;">
+      <div style="color:#FF5C00;font-weight:700;">2027</div>
+      <div style="font-size:4mm;color:#f0f0f0;">Пилот: роутер моделей, кэш, согласия, 3 роли</div>
+    </div>
+    <div style="margin-bottom: 8mm;">
+      <div style="color:#FF5C00;font-weight:700;">2028</div>
+      <div style="font-size:4mm;color:#f0f0f0;">Воронка Growth, handoff retail→biz, эффективность OPEX</div>
+    </div>
+    <div style="margin-bottom: 8mm;">
+      <div style="color:#FF5C00;font-weight:700;">2029</div>
+      <div style="font-size:4mm;color:#f0f0f0;">Масштабирование, все контуры Сбера, эффект 475 млрд ₽</div>
+    </div>
+  </div>
+  <div class="slide-number">12 / 15</div>
+</section>
+
+<!-- 13. Риски -->
+<section class="slide">
+  <div class="slide-title">Ключевые риски и митигация</div>
+  <div class="three-col">
+    <div class="card">
+      <h4>Утечка между ролями</h4>
+      <p>Изоляция на уровне SQL (namespace), тесты cross-namespace leak = 0.</p>
+    </div>
+    <div class="card">
+      <h4>Отзыв согласия</h4>
+      <p>Мгновенная инвалидация кэша Redis, аудит отзыва.</p>
+    </div>
+    <div class="card">
+      <h4>Галлюцинации LLM</h4>
+      <p>Критик-проверка, guardrails, критик-вердикт, Decimal-код-гейт.</p>
+    </div>
+  </div>
+  <div class="slide-number">13 / 15</div>
+</section>
+
+<!-- 14. Метрики -->
+<section class="slide">
+  <div class="slide-title">Метрики успеха</div>
+  <table>
+    <tr><th>Метрика</th><th>Целевое значение</th></tr>
+    <tr><td>Retrieval relevance</td><td>≥ 0.90</td>
+    <tr>
+      <td>Answer correctness</td><td>≥ 0.95</td>
+    </tr>
+    <tr>
+      <td>Refusal correctness (без согласия)</td><td>1.00</td>
+    </tr>
+    <tr>
+      <td>Cross-namespace leak</td><td>0</td>
+    </tr>
+    <tr>
+      <td>Latency (средняя)</td><td>&lt; 800 мс</td>
+    </tr>
+    <tr>
+      <td>Cost per successful task</td><td>снижение на 60–80%</td>
+    </tr>
+  </table>
+  <div class="slide-number">14 / 15</div>
+</section>
+
+<!-- 15. Команда и тезис -->
+<section class="slide">
+  <div class="slide-title">Команда и финальный тезис</div>
+  <p class="slide-sub">Одна экосистема, один контекст, три роли — без выхода из контура Сбера.</p>
+  <div class="two-col">
+    <div class="col">
+      <h4>Команда</h4>
+      <ul>
+        <li>Product Owner — бизнес-логика воронки</li>
+        <li>Solution Architect — архитектура и безопасность</li>
+        <li>ML Engineer — модели, роутер, оценка качества</li>
+        <li>Backend Engineer — API, согласия, аудит</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>Финальный тезис</h4>
+      <p style="font-size: 5mm; line-height: 1.6;">Клиент находится всегда в одной удобной экосистеме Кольцевой Сбера и minimally выходит из неё, уплотняя свою жизнь и работу с банком.</p>
+    </div>
+  </div>
+  <div class="slide-number">15 / 15</div>
+</section>
+
+</body>
+</html>
