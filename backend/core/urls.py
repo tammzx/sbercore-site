@@ -12,8 +12,9 @@ def health(request):
 def overview(request):
     return JsonResponse({
         "label": "Инвестиционная гипотеза для экосистемы",
-        "product": "SberCore",
-        "purpose": "Общее ядро для оркестрации AI-сценариев и измерения бизнес-эффекта",
+        "product": "sbercore",
+        "display_name": "ЯдроСбер",
+        "purpose": "Персональный слой оркестрации AI-сценариев, операций и измерения бизнес-эффекта",
         "evidence_status": "concept",
     })
 
@@ -21,29 +22,40 @@ def overview(request):
 @require_GET
 def economics(request):
     return JsonResponse({
-        "status": "illustrative_model",
+        "status": "team_scenario_model",
+        "currency": "RUB",
+        "horizon": [2027, 2028, 2029],
+        "investment_bn": [2.40, 1.80, 1.45],
+        "realizable_effect_bn": [0.80, 3.52, 9.16],
+        "net_effect_bn": [-1.60, 1.72, 7.71],
+        "cumulative_effect_bn": [-1.60, 0.12, 7.83],
+        "stress_case": {
+            "effect_share": 0.5,
+            "cumulative_effect_bn": [-2.00, -2.04, 1.09],
+            "payback_year": 2029,
+        },
+        "note": "Сценарная модель команды; допущения требуют проверки на данных Сбера. Эффект API исключён из окупаемости.",
         "components": [
             {
-                "key": "uplift",
-                "name": "Дополнительный маржинальный доход",
+                "key": "productivity",
+                "name": "Реализуемый эффект труда",
                 "sign": "+",
-                "description": "Инкрементальная маржа против контрольной группы, а не атрибуция всех продаж кампании.",
+                "description": "0,67 / 2,88 / 7,78 млрд ₽ по годам; засчитывается только подтверждённая доля конвертации высвобождённого времени в результат.",
             },
             {
-                "key": "savings",
-                "name": "Снижение стоимости коммуникаций и интеграций",
+                "key": "business_clients",
+                "name": "Маржинальный вклад бизнес-клиентов",
                 "sign": "+",
-                "description": "Подтверждённая экономия с учётом стоимости каналов, повторных разработок и операций.",
+                "description": "0,13 / 0,64 / 1,38 млрд ₽ по годам; сценарная оценка вклада дополнительных активных клиентов.",
             },
             {
                 "key": "platform_cost",
-                "name": "Разработка, эксплуатация и governance ядра",
+                "name": "Разработка, эксплуатация и контроль платформы",
                 "sign": "−",
-                "description": "Полная стоимость владения: команда, инфраструктура, безопасность, поддержка и контроль.",
+                "description": "2,40 / 1,80 / 1,45 млрд ₽ затрат в 2027–2029 годах.",
             },
         ],
-        "formula": "incremental_margin + verified_savings - total_cost_of_ownership",
-        "financial_estimates": None,
+        "formula": "incremental_margin + verified_productivity_effect - total_project_cost",
     })
 
 
