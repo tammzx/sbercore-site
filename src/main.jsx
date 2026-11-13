@@ -12,7 +12,7 @@ const pages = [
 
 function Header({ active }) {
   const [open, setOpen] = useState(false);
-  return <header className="topbar"><a className="brand" href="/" aria-label="ЯдроСбер"><span className="brand-mark"><span /></span><span>Ядро<span className="brand-light">Сбер</span></span></a><button className="menu-toggle" aria-label={open ? 'Закрыть меню' : 'Открыть меню'} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button><nav className={open ? 'nav nav-open' : 'nav'}>{pages.map((page) => <a className={active === page.href ? 'active' : ''} href={page.href} key={page.href} onClick={() => setOpen(false)}>{page.title}</a>)}<a className="nav-cta" href="/economics#decision">Пилот с контрольными этапами <ArrowUpRight size={16}/></a></nav></header>;
+  return <header className="topbar"><a className="brand" href="/" aria-label="ЯдроСбер"><BrandMark/><span>Ядро<span className="brand-light">Сбер</span></span></a><button className="menu-toggle" aria-label={open ? 'Закрыть меню' : 'Открыть меню'} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button><nav className={open ? 'nav nav-open' : 'nav'}>{pages.map((page) => <a className={active === page.href ? 'active' : ''} href={page.href} key={page.href} onClick={() => setOpen(false)}>{page.title}</a>)}<a className="nav-cta" href="/economics#decision">Пилот с контрольными этапами <ArrowUpRight size={16}/></a></nav></header>;
 }
 
 function Footer() {
@@ -23,7 +23,26 @@ function Footer() {
     localStorage.setItem('sbercore-theme', dark ? 'dark' : 'light');
   }, [dark]);
 
-  return <footer><a className="brand footer-brand" href="/"><span className="brand-mark"><span/></span><span>Ядро<span className="brand-light">Сбер</span></span></a><span>Концепция продукта и работающий прототип · оценки — сценарная модель, требуют проверки на данных Сбера · 2026</span><div className="footer-meta"><button className="theme-toggle" type="button" role="switch" aria-checked={dark} onClick={() => setDark(!dark)}><span className="theme-toggle-track"><i/></span><span>{dark ? 'Тёмная тема' : 'Светлая тема'}</span></button><span>2026</span></div></footer>;
+  return <footer><a className="brand footer-brand" href="/"><BrandMark/><span>Ядро<span className="brand-light">Сбер</span></span></a><span>Концепция продукта и работающий прототип · оценки — сценарная модель, требуют проверки на данных Сбера · 2026</span><div className="footer-meta"><button className="theme-toggle" type="button" role="switch" aria-checked={dark} onClick={() => setDark(!dark)}><span className="theme-toggle-track"><i/></span><span>{dark ? 'Тёмная тема' : 'Светлая тема'}</span></button><span>2026</span></div></footer>;
+}
+
+function BrandLogo({ name, className = '', fallback = null }) {
+  const [format, setFormat] = useState('svg');
+  const logoUrl = `${import.meta.env.BASE_URL}logos/${name}.${format}`;
+
+  if (!format) return fallback;
+
+  return <img
+    className={`brand-logo ${className}`}
+    src={logoUrl}
+    alt=""
+    aria-hidden="true"
+    onError={() => setFormat((current) => current === 'svg' ? 'png' : '')}
+  />;
+}
+
+function BrandMark({ className = '' }) {
+  return <BrandLogo name="yadro" className={className} fallback={<span className={`brand-mark ${className}`} aria-hidden="true"><span/></span>}/>;
 }
 
 function Metric({ value, label, note }) { return <div className="metric"><strong>{value}</strong><span>{label}</span>{note && <small>{note}</small>}</div>; }
@@ -39,6 +58,7 @@ function Home() {
     <section className="section-wrap thesis"><div className="section-head"><div><div className="eyebrow eyebrow-dark">01 — ЭКОНОМИЧЕСКИЙ ВОПРОС</div><h2>Что теряется,<br/>когда ИИ не знает <em>контекста?</em></h2></div><p>Клиент объясняет ситуацию заново в каждом канале. Сотрудник ищет форму, инструкцию и согласующего. Модель отвечает, но дело остаётся незавершённым. Результат — повторные обращения, ручные операции и разорванная воронка от личного клиента к бизнесу.</p></div><div className="loss-grid"><article><span className="loss-number">01</span><h3>Повторная работа</h3><p>Повторный сбор фактов и уточнений увеличивает путь решения и нагрузку на поддержку.</p></article><article><span className="loss-number">02</span><h3>Потерянный следующий шаг</h3><p>Потребность замечена, но переход в подходящий продукт или сервис требует начать новый процесс.</p></article><article><span className="loss-number">03</span><h3>Сложно доказать отдачу</h3><p>Без цены завершённой задачи и контрольной группы использование ИИ не равно финансовому эффекту.</p></article></div></section>
 
     <section className="dark-panel"><div className="dark-panel-inner"><div><div className="eyebrow">БАЗА ДЛЯ РОСТА УЖЕ СОЗДАНА</div><h2>475 млрд ₽</h2><p>AI-эффект Сбера за 2025 год по материалам кейса. Более 50 млрд ₽ — эффект генеративного ИИ. Цель на 2026 год — 550 млрд ₽.</p></div><div className="dark-divider"/><div className="dark-panel-copy"><span>СЛЕДУЮЩАЯ ЗАДАЧА</span><strong>Системно превращать интеллект моделей в завершённые задачи и измеримый вклад в экономику.</strong><a href="/economics">Разобрать модель эффекта <ArrowRight size={17}/></a></div></div><div className="dark-asset-row"><article><strong>19 млн → 23+ млн</strong><span>MAU GigaChat · ноябрь 2025 → март 2026 · данные кейса</span></article><article><strong>9×</strong><span>рост аудитории GigaChat за год · данные кейса</span></article><article><strong>432 млрд</strong><span>параметров GigaChat 3.5 Ultra · open source · 2× быстрее предыдущей версии</span></article><article><strong>160+ / 50+</strong><span>агенты Giga-ассистента / специализированные агенты в СберБизнесе · по материалам кейса</span></article></div></section>
+    <section className="ecosystem-strip"><div className="ecosystem-intro"><div className="eyebrow eyebrow-dark">ЭКОСИСТЕМА УЖЕ СОБРАНА ИЗ СИЛЬНЫХ АКТИВОВ</div><p>ЯдроСбер не заменяет бренд банка или модель — оно связывает их в единый сценарий для человека.</p></div><div className="ecosystem-chain"><div className="ecosystem-brand"><BrandLogo name="sber" className="ecosystem-logo ecosystem-logo-sber" fallback={<span className="ecosystem-fallback sber-fallback"><i/>Сбер</span>}/><span>БАНК И ЭКОСИСТЕМА</span></div><span className="ecosystem-join">+</span><div className="ecosystem-brand"><BrandLogo name="gigachat" className="ecosystem-logo ecosystem-logo-gigachat" fallback={<span className="ecosystem-fallback giga-fallback"><Sparkles/>GigaChat</span>}/><span>ГЕНЕРАТИВНАЯ МОДЕЛЬ</span></div><span className="ecosystem-join">+</span><div className="ecosystem-brand"><BrandMark className="ecosystem-logo"/><span>ПЕРСОНАЛЬНЫЙ ОРКЕСТРАТОР</span></div></div></section>
 
     <section className="section-wrap value-section"><div className="section-head"><div><div className="eyebrow eyebrow-dark">02 — ЦЕННОСТЬ ДЛЯ ДВУХ СТОРОН</div><h2>Один контекст.<br/><em>Два экономических результата.</em></h2></div><p>Персонализация не сводится к рекламе. Пользователю — меньше действий и более понятный сервис. Сберу — завершение большего числа нужных клиенту задач с контролем стоимости, качества и риска.</p></div><div className="two-sided"><article className="side-card side-client"><div className="side-kicker"><span><Sparkles size={17}/></span> ДЛЯ ЧЕЛОВЕКА</div><h3>Сбер понимает ситуацию,<br/>а не только запрос.</h3><ul><li><Check/>Не нужно повторять данные и цели в каждом сервисе</li><li><Check/>Сложное объясняется на понятном человеку языке</li><li><Check/>Операция готовится заранее, но подтверждается пользователем</li><li><Check/>Помощь появляется уместно и с объяснением «почему»</li></ul></article><article className="side-card side-business"><div className="side-kicker"><span><CircleDollarSign size={17}/></span> ДЛЯ СБЕРА</div><h3>Полезная задача становится<br/>экономическим результатом.</h3><ul><li><Check/>Меньше ручных шагов и повторных обращений</li><li><Check/>Выше вероятность перехода клиента в релевантный сервис</li><li><Check/>Единая инфраструктура сценариев поверх существующих активов</li><li><Check/>Эффект измеряется по инкрементальной марже и полной стоимости</li></ul></article></div></section>
 
